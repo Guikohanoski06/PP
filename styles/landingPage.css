@@ -169,8 +169,9 @@ main {
 
 .container_about {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 175px auto;
     padding: 20px;
+
 }
 
 .about-section {

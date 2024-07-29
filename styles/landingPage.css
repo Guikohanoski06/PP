@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+    padding: 1.5rem 3rem;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+main {
+    margin-bottom: 100vh;
+}
+
+
+.container_btns_navbar {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.btns_navbar {
+    text-decoration: none;
+    color: rgb(39, 39, 39);
+    transition: all 0.6s;
+}
+
+.btns_navbar:hover {
+    transform: scale(1.05);
+}
+
+.container_btns_navbar:hover .btns_navbar:not(:hover) {
+    /* Estilos para os botões que não estão com o hover ativo quando o mouse está sobre o contêiner */
+    /* Por exemplo: */
+    opacity: 0.3;
+    /* Diminui a opacidade dos botões que não estão com o hover ativo */
+}
+
+.main_content {
+    display: flex;
+    flex-direction: column;
+}
+
+.description_section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    min-height: 93vh;
+    min-width: 80vw;
+}
+
+.description_section-content {
+    width: 40vw;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+}
+
+.description_section-content h1 {
+    font-size: 2.8rem;
+    /* Tamanho da fonte em rem */
+    font-weight: 600;
+    /* Peso da fonte */
+}
+
+.description_section-content p {
+    width: 90%;
+    margin-top: .8rem;
+}
+
+.description_section-content div {
+    display: flex;
+}
+
+.description_section-content a {
+    text-decoration: none;
+    text-align: center;
+    margin: 1rem;
+    color: white;
+    padding: 1rem 1.1rem;
+    background-color: #066db1;
+    border-radius: 8px;
+    transition: background-color 0.5s, color 0.5s, border 0.5s;
+}
+
+.text-diferent {
+    color: #066db1;
+}
+
+.description_section-content a:hover {
+    background-color: white;
+    color: black;
+    outline: #066db1 1px solid;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card-section-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 60px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.card-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.cards-div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 35px;
+    width: 100%;
+    max-width: 375px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: .2px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 10px;
+}
+
+.card-content {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.6;
+}
+
+@media (min-width: 600px) {
+    .cards-div {
+        flex-direction: row;
+        gap: 20px;
+        justify-content: space-between;
+    }
+}
+
+
+.container_about {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.about-section {
+    background: #fff;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.about-section-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.about-text {
+    font-size: 1.1em;
+    color: #666;
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+.about-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 600px) {
+    .about-content {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .about-text {
+        flex: 1;
+    }
+
+    .about-image {
+        flex: 1;
+        max-width: none;
+    }
+}

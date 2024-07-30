@@ -31,21 +31,25 @@ body {
 form {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .form-group {
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .form-group label {
     display: block;
+    margin-left: 1rem;
     margin-bottom: 5px;
     font-size: 14px;
     color: #555;
+    text-align: left;
 }
 
 .form-group input {
-    width: 100%;
+    width: 90%;
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -59,7 +63,6 @@ form {
 }
 
 button {
-    flex: 1;
     padding: 12px;
     background-color: #007bff;
     border: none;
@@ -68,6 +71,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 97%;
 }
 
 button:hover {

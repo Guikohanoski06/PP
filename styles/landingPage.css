@@ -11,11 +11,13 @@ body {
 }
 
 .navbar {
+    position: fixed;
     display: flex;
     justify-content: space-between;
     min-width: 100%;
     padding: 1.5rem 3rem;
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+    background-color: #fff;
 }
 
 .container_btns_navbar {

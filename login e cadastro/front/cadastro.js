@@ -11,7 +11,7 @@ button.onclick = async function (event) {
     console.log("Dados do formulário:", data);
 
     try {
-        const response = await fetch('http://localhost:3001/api/user/create', {
+        const response = await fetch('http://localhost:3003/api/user/create', {
             method: "POST",
             headers: { "Content-Type": "application/json;charset=UTF-8" },
             body: JSON.stringify(data)

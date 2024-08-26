@@ -1,0 +1,84 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+label {
+    color: #666;
+    font-weight: bold;
+    margin-bottom: 6px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #066db1;
+    outline: none;
+    box-shadow: 0 0 8px rgba(6, 109, 177, 0.2);
+}
+
+button[type="submit"] {
+    background-color: #066db1;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #055a90;
+}
+
+.account-button {
+    background: none;
+    border: none;
+    color: #066db1;
+    margin-top: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    width: 100%;
+    transition: color 0.3s;
+}
+
+.account-button:hover {
+    color: #055a90;
+}

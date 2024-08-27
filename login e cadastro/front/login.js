@@ -9,7 +9,7 @@ button.onclick = async function () {
 
     console.log("Dados do formulário:", data);
 
-    const response = await fetch('http://localhost:3003/api/login', {
+    const response = await fetch('http://localhost:3004/api/login', {
         method: "POST",
         headers: { "Content-Type": "application/json;charset=UTF-8" },
         body: JSON.stringify(data)
@@ -19,7 +19,7 @@ button.onclick = async function () {
 
     if (content.success) {
         console.log("Login realizado com sucesso!");
-        window.location.href = "../front/home.html";
+        window.location.href = "../front/homePage.html";
     } else {
         console.log("Erro ao realizar login!");
     }

@@ -75,8 +75,8 @@ button[type="button"]:hover {
     text-align: center;
     display: block;
     width: 100%;
-    transition: color 0.3s;
     text-decoration: none;
+    transition: color 0.3s;
 }
 
 .account-button:hover {

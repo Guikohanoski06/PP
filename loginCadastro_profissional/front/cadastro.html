@@ -11,18 +11,19 @@
 <body>
     <div class="container">
         <form method="post">
-            <h2>Cadastro</h2>
+            <h2>Cadastro Profissional</h2>
             <label for="username">Usuário:</label>
             <input type="text" id="username" name="username" required>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" required>
-            <button type="submit" id="handleSubmit" onclick="window.location.href='../front/login.html'">Cadastrar</button>
+            <label for="cpf">cpf:</label>
+            <input type="text" id="cpf" name="cpf" required>
+            <button type="submit" id="handleSubmit">Cadastrar</button>
         </form>
-        <a class="account-button" href='../front/login.html'>Já tenho conta</a>
+        <a class="account-button" href='../front/login.html'">Já tenho conta</a>
     </div>
 </body>
 <script src="cadastro.js"></script>
-
 </html>

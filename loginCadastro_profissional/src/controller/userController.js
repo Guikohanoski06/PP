@@ -8,7 +8,7 @@ async function storeUser(request, response) {
         request.body.cpf
     ];
 
-    const query = "INSERT INTO users(name, email, password, cpf) VALUES(?,?,?,?)";
+    const query = "INSERT INTO psicologos(name, email, password, cpf) VALUES(?,?,?,?)";
 
     connection.query(query, params, (err, results) => {
         if (err) {

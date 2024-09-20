@@ -21,7 +21,7 @@ header {
     min-width: 100vw;
 }
 
-.profile-pic{
+.profile-pic {
     border-radius: 100%;
     border: 1px solid black;
 }
@@ -89,4 +89,100 @@ main {
     font-weight: bold;
 }
 
+/* Centraliza o carrossel na tela */
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    /* Faz com que o carrossel ocupe a tela inteira verticalmente */
+    background-color: #f9f9f9;
+}
 
+.carousel-wrapper {
+    overflow: hidden;
+    width: 80%;
+    max-width: 1000px;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    /* Isso faz com que os itens do carrossel fiquem lado a lado */
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-flex {
+    display: flex;
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 20px;
+    transition: transform 0.3s;
+}
+
+.profile-card:hover {
+    transform: scale(1.02);
+    /* Efeito suave ao passar o mouse */
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    margin-left: -60px;
+}
+
+.profile-picture {
+    width: 250px;
+    height: 250px;
+    border-radius: 25%;
+    margin: 0 80px 0;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-left: -100px;
+}
+
+.psychologist-name {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.psychologist-info {
+    font-size: 1em;
+    color: #777;
+}
+
+/* Botões de navegação do carrossel */
+.carousel-prev,
+.carousel-next {
+    background-color: #05518c;
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 32px;
+    transition: background-color 0.3s;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+    background-color: #559bca;
+}

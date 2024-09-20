@@ -6,12 +6,13 @@ button.onclick = async function (event) {
     let name = document.getElementById("username").value;  
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
+    let cpf = document.getElementById("cpf").value;
 
-    let data = { name, email, password };  
+    let data = { name, email, password, cpf };  
     console.log("Dados do formulário:", data);
 
     try {
-        const response = await fetch('http://localhost:3001/api/user/create', {
+        const response = await fetch('http://localhost:3006/api/user/create', {
             method: "POST",
             headers: { "Content-Type": "application/json;charset=UTF-8" },
             body: JSON.stringify(data)

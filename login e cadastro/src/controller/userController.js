@@ -39,5 +39,6 @@ exports.getPsychologists = async (req, res) => {
 };
 
 module.exports = {
-    storeUser
+    storeUser,
+    getPsychologists
 };

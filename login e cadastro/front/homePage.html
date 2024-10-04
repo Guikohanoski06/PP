@@ -4,101 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Carrossel de Psicólogos</title>
     <link rel="stylesheet" href="../../styles/homePage.css">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <div class=""><img src="../../loginImg.png" onclick="window.location.href='../../verPerfil.html'"
-                    width="75px" height="75px" alt=""></div>
+            <div><img src="../../loginImg.png" onclick="window.location.href='../../verPerfil.html'" width="75px"
+                    height="75px" alt=""></div>
             <div class="profile">
                 <h1>BEM VINDO</h1>
             </div>
             <div class="div-btns">
-                <button class="btn-diferent_content">conteudos para download</button>
+                <button class="btn-diferent_content">conteúdos para download</button>
             </div>
         </header>
+
         <div class="carousel-container">
             <button class="carousel-prev">‹</button>
 
             <div class="carousel-wrapper">
-<<<<<<< HEAD
                 <div class="carousel" id="carousel">
-                  <!-- colocar os dados que preciso aqui -->
-=======
-
-                <div class="carousel">
-                    <div class="carousel-item active">
-                        <div class="profile-card">
-                            <div class="profile-picture">
-                                <img src="../../loginImg.png" alt="Foto do Psicólogo 1">
-                            </div>
-                            <div class="text">
-                                <h2 class="psychologist-name">Psicólogo 1</h2>
-                                <p class="psychologist-info">Especialista em Terapia Cognitivo-Comportamental</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-item">
-                        <div class="profile-card">
-                            <div class="profile-picture">
-                                <img src="foto2.jpg" alt="Foto do Psicólogo 2">
-                            </div>
-                            <div class="profile-text">
-                                <h2 class="psychologist-name">Psicólogo 2</h2>
-                                <p class="psychologist-info">Especialista em Terapia Familiar</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="carousel-item">
-                        <div class="profile-card">
-                            <div class="profile-picture">
-                                <img src="foto2.jpg" alt="Foto do Psicólogo 2">
-                            </div>
-                            <h2 class="psychologist-name">Psicólogo 2</h2>
-                            <p class="psychologist-info">Especialista em Terapia Familiar</p>
-                        </div>
-                    </div>
-
-
-                    <div class="carousel-item">
-                        <div class="profile-card">
-                            <div class="profile-picture">
-                                <img src="foto2.jpg" alt="Foto do Psicólogo 2">
-                            </div>
-                            <h2 class="psychologist-name">Psicólogo 2</h2>
-                            <p class="psychologist-info">Especialista em Terapia Familiar</p>
-                        </div>
-                    </div>
-
-
-                    <div class="carousel-item">
-                        <div class="profile-card">
-                            <div class="profile-picture">
-                                <img src="foto2.jpg" alt="Foto do Psicólogo 2">
-                            </div>
-                            <h2 class="psychologist-name">Psicólogo 2</h2>
-                            <p class="psychologist-info">Especialista em Terapia Familiar</p>
-                        </div>
-                    </div>
-
->>>>>>> 78027cf (Tentando fazer aparecer psicologos no home)
+                    <!-- Os itens do carrossel serão carregados dinamicamente via JavaScript -->
                 </div>
-              </div>
-              
+            </div>
+
             <button class="carousel-next">›</button>
         </div>
 
         <ul id="psychologist-list"></ul> <!-- Lista onde os dados serão exibidos -->
+    </div>
 
-
+    <script src="homePage.js"></script>
 </body>
-<script src="homePage.js"></script>
 
 </html>

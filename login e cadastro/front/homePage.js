@@ -18,6 +18,28 @@ function updateCarousel() {
   carousel.style.transform = `translateX(-${currentItem * width}px)`;
 }
 
+async function fetchPsychologists() {
+  try {
+    const response = await fetch('/psychologists'); // Fazendo a requisição à rota
+    const psychologists = await response.json();
+
+    const listElement = document.getElementById('psychologist-list');
+    listElement.innerHTML = ''; // Limpa o conteúdo da lista antes de exibir os dados
+
+    psychologists.forEach((psychologist) => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${psychologist.name} - ${psychologist.specialty}`;
+      listElement.appendChild(listItem);
+    });
+  } catch (error) {
+    console.error('Erro ao buscar psicólogos:', error);
+  }
+}
+
+// Chama a função ao carregar a página
+window.onload = fetchPsychologists;
+
+
 // Certifique-se de que o carrossel seja atualizado ao carregar a página
 updateCarousel();
 

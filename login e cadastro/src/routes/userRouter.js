@@ -1,7 +1,8 @@
-const {Router} = require('express');
-const router = Router();
-const { storeUser } = require('../controller/userController');
+const express = require('express');
+const router = express.Router();
+const userController = require('../controller/userController');
 
-router.post('/user/create', storeUser);
+// Rota para buscar todos os psicólogos
+router.get('/psychologists', userController.getPsychologists);
 
 module.exports = router;

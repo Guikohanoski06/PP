@@ -27,6 +27,17 @@ async function storeUser(request, response) {
     });
 }
 
+const db = require('../config/db'); // Conectando ao banco de dados
+
+exports.getPsychologists = async (req, res) => {
+  try {
+    const [results] = await db.query('SELECT * FROM psicologos');
+    res.json(results);
+  } catch (error) {
+    res.status(500).json({ message: 'Erro ao buscar psicólogos', error });
+  }
+};
+
 module.exports = {
     storeUser
 };

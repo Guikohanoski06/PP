@@ -131,3 +131,12 @@ header {
 .carousel-next:hover {
     background-color: #559bca;
 }
+
+.carousel-container img {
+    height: 200px;
+}
+
+.profile-card {
+    display: flex;
+    justify-content: space-around;
+}

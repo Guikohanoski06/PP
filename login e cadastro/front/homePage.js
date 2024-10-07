@@ -35,7 +35,7 @@ async function fetchPsicologos() {
         carouselItem.innerHTML = `
           <div class="profile-card">
             <div class="profile-picture">
-              <img src="../../loginImg.png" alt="Foto do Psicólogo ">
+              <img src="../../loginImg.png" alt="Foto do Psicólogo">
             </div>
             <div class="text">
               <h2 class="psychologist-name">${psicologo.name}</h2>

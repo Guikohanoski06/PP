@@ -1,4 +1,4 @@
-const connection = require('../config/db');
+const connection = require('../config/db').promise(); // Utilize .promise() para funções async/await
 
 async function storeUser(request, response) {
     const params = [
@@ -9,27 +9,26 @@ async function storeUser(request, response) {
 
     const query = "INSERT INTO users(name, email, password) VALUES(?,?,?)";
 
-    connection.query(query, params, (err, results) => {
-        if (err) {
-            console.error("Erro ao inserir no banco de dados:", err);
-            return response.status(400).json({
-                success: false,
-                message: "Erro ao inserir os dados no banco de dados",
-                error: err
-            });
-        }
-
+    try {
+        const [results] = await connection.query(query, params);
         return response.status(200).json({
             success: true,
             message: "Usuário cadastrado com sucesso",
             data: results
         });
-    });
+    } catch (err) {
+        console.error("Erro ao inserir no banco de dados:", err);
+        return response.status(400).json({
+            success: false,
+            message: "Erro ao inserir os dados no banco de dados",
+            error: err
+        });
+    }
 }
 
-const db = require('../config/db'); // Conectando ao banco de dados
+const db = require('../config/db').promise(); // Conectando ao banco de dados com promessas
 
-exports.getPsychologists = async (req, res) => {
+const getPsychologists = async (req, res) => {
   try {
     const [results] = await db.query('SELECT * FROM psicologos');
     res.json(results);
@@ -40,5 +39,5 @@ exports.getPsychologists = async (req, res) => {
 
 module.exports = {
     storeUser,
-    getPsychologists
+    getPsychologists,
 };

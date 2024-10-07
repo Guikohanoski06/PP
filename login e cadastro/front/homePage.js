@@ -20,11 +20,11 @@ function updateCarousel() {
 // Função para buscar e exibir os psicólogos no carrossel
 async function fetchPsicologos() {
   try {
-    const response = await fetch('http://localhost:3005/api/psicologos');
+    const response = await fetch('http://localhost:3004/api/psychologists');
     const data = await response.json();
 
-    if (data.success) {
-      const psicologos = data.data;
+    if (data.length > 0) {
+      const psicologos = data;
       carousel.innerHTML = ''; // Limpa o carrossel antes de adicionar novos itens
       totalItems = psicologos.length;
 
@@ -35,12 +35,11 @@ async function fetchPsicologos() {
         carouselItem.innerHTML = `
           <div class="profile-card">
             <div class="profile-picture">
-              <img src="../../loginImg.png" alt="Foto do Psicólogo ${psicologo.name}">
+              <img src="../../loginImg.png" alt="Foto do Psicólogo ">
             </div>
             <div class="text">
               <h2 class="psychologist-name">${psicologo.name}</h2>
               <p class="psychologist-info">${psicologo.email}</p>
-              <p class="psychologist-info">CPF: ${psicologo.cpf}</p>
             </div>
           </div>
         `;
@@ -52,6 +51,7 @@ async function fetchPsicologos() {
       updateCarousel();
     } else {
       console.error('Erro ao buscar os psicólogos:', data.message);
+      console.error('Erro ao buscar os psicólogos:', data);
     }
   } catch (error) {
     console.error('Erro na requisição:', error);

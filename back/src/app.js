@@ -11,6 +11,7 @@ const loginRouter = require('./routes/loginRouter');
 const userRouterPsi = require('./routes/userRouterPsi');
 const loginRouterPsi = require('./routes/loginRouterPsi');
 const homeRouter = require('./routes/homeRouter');
+const postarHorario = require('./routes/postarHorarioRouter')
 
 const app = express();
 
@@ -31,5 +32,8 @@ app.use('/api', loginRouterPsi);
 
 // Rota para buscar psicólogos
 app.use('/api', homeRouter);
+
+// rota para postar atendimentos
+app.use('/api', postarHorario)
 
 module.exports = app;

@@ -12,6 +12,7 @@ const userRouterPsi = require('./routes/userRouterPsi');
 const loginRouterPsi = require('./routes/loginRouterPsi');
 const homeRouter = require('./routes/homeRouter');
 const postarHorario = require('./routes/postarHorarioRouter')
+const verHorario = require('./routes/verHorarioRouter')
 
 const app = express();
 
@@ -35,5 +36,6 @@ app.use('/api', homeRouter);
 
 // rota para postar atendimentos
 app.use('/api', postarHorario)
+app.use('/api', verHorario)
 
 module.exports = app;

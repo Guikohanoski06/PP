@@ -18,7 +18,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (content.success) {
             console.log("Login realizado com sucesso!");
-            window.location.href = "../front/homePage.html";
+
+            // Salva os dados do usuário no localStorage
+            localStorage.setItem("user", JSON.stringify(content.data[0]));
+
+            // Redireciona para a página de perfil
+            window.location.href = "../front/verPerfil.html";
         } else {
             console.log("Erro ao realizar login!");
         }

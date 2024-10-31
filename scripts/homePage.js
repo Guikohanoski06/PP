@@ -20,10 +20,10 @@ function updateCarousel() {
 // Função para buscar e exibir os psicólogos no carrossel
 async function fetchPsicologos() {
   try {
-    const response = await fetch('http://localhost:3004/api/psychologists'); // Corrigido a porta para 3005
+    const response = await fetch('http://localhost:3004/api/psychologists');
     const data = await response.json();
 
-    if (data.data.length > 0) { // Corrigido para verificar data.data
+    if (data.data.length > 0) {
       const psicologos = data.data;
       carousel.innerHTML = '';
       totalItems = psicologos.length;
@@ -40,6 +40,7 @@ async function fetchPsicologos() {
             <div class="text">
               <h2 class="psychologist-name">${psicologo.name}</h2>
               <p class="psychologist-info">${psicologo.email}</p>
+              <button class="view-schedule-button" onclick="window.location.href='/front/verHorario.html'">Ver Horários Marcados</button>
             </div>
           </div>
         `;

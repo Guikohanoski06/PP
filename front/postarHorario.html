@@ -4,24 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Postar Horario</title>
+    <title>Postar Horário</title>
     <link rel="stylesheet" href="./styles/postarHorario.css">
-    
 </head>
 <body>
     <div class="container">
         <form method="post">
-            <h2>Poste seu horario de Atendimento</h2>
+            <h2>Poste seu horário de Atendimento</h2>
+            
             <label for="local">Local:</label>
             <input type="text" id="local" name="local" required>
-            <label for="horario">Horario:</label>
-            <input type="horario" id="horario" name="horario" required>
+            
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" required>
+            
+            <label for="horario">Horário:</label>
+            <input type="time" id="horario" name="horario" required>
+            
             <label for="contato">Contato:</label>
-            <input type="contato" id="contato" name="contato" required>
-            <button type="submit" id="handleSubmit" onclick="window.location.href='../front/homePagePsicologo.html'">Cadastrar</button>
+            <input type="text" id="contato" name="contato" required>
+            
+            <button type="submit" id="handleSubmit">Cadastrar</button>
         </form>
     </div>
-
+    <script src="../scripts/postarHorario.js"></script>
 </body>
-<script src="../scripts/postarHorario.js"></script>
 </html>

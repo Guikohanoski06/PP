@@ -1,96 +1,100 @@
+/* Reset básico */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #f3f4f6, #e3e4e6);
+    background-color: #f0f2f5;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
+/* Estilos do contêiner do perfil */
 .profile-container {
-    display: flex;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 1000px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    flex-direction: column;
+    width: 90%;
+    max-width: 600px;
 }
 
+/* Estilos da foto de perfil */
 .profile-pic {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .profile-pic img {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    width: 80%;
-    max-width: 200px;
-    height: auto;
 }
 
+/* Estilos das informações do perfil */
 .profile-info {
-    flex: 2;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    padding-left: 20px;
-    padding-top: 20px;
 }
 
 .profile-field {
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
+    margin-bottom: 15px;
 }
 
-.profile-field label {
+label {
     font-weight: bold;
     display: block;
-    margin-right: 10px;
-    width: 80px;
+    margin-bottom: 5px;
 }
 
-.profile-field input {
-    flex: 1;
+input {
+    width: 100%;
     padding: 10px;
-    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 1em;
 }
 
-.profile-field input[type="password"] {
-    letter-spacing: 3px;
+input:disabled {
+    background-color: #e9ecef;
 }
 
-button, a {
-    text-decoration: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #066db1;
-    color: white;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
+/* Estilos dos botões */
 .action-buttons {
-    margin-top: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #066db1;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #054a88;
+}
+
+/* Estilos do link */
+a {
+    align-self: center;
+    text-decoration: none;
+    color: #066db1;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
 }

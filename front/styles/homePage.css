@@ -140,3 +140,20 @@ header {
     display: flex;
     justify-content: space-around;
 }
+
+.view-schedule-button {
+    background-color: #066db1;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.view-schedule-button:hover {
+    background-color: #054a88;
+}

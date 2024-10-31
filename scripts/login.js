@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
             localStorage.setItem("user", JSON.stringify(content.data[0]));
 
             // Redireciona para a página de perfil
-            window.location.href = "../front/verPerfil.html";
+            window.location.href = "../front/homePage.html";
         } else {
             console.log("Erro ao realizar login!");
         }

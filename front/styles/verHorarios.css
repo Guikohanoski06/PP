@@ -23,19 +23,56 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 th, td {
-    padding: 10px;
+    padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    color: #555;
 }
 
 th {
     background-color: #066db1;
     color: white;
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
 tr:hover {
     background-color: #f1f1f1;
+}
+
+td:last-child {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+button.edit {
+    background-color: #4caf50;
+}
+
+button.delete {
+    background-color: #f44336;
+}
+
+button.edit:hover {
+    background-color: #388e3c;
+}
+
+button.delete:hover {
+    background-color: #d32f2f;
 }

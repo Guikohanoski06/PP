@@ -14,20 +14,62 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-function toggleEdit(field) {
-    const inputField = document.getElementById(field);
-    const button = document.getElementById(`edit-${field}-button`);
+// Função para habilitar a edição de todos os campos
+function enableEditAll() {
+    const inputs = document.querySelectorAll(".profile-info input");
+    inputs.forEach(input => {
+        input.disabled = false; // Habilita todos os campos
+        input.focus(); // Foca no primeiro campo editável
+    });
 
-    if (button.innerText === "Editar") {
-        inputField.disabled = false;
-        button.innerText = "Salvar";
-    } else {
-        // Salva as mudanças no localStorage
-        const user = JSON.parse(localStorage.getItem("user")) || {};
-        user[field] = inputField.value;
-        localStorage.setItem("user", JSON.stringify(user));
-        
-        inputField.disabled = true;
-        button.innerText = "Editar";
-    }
+    document.getElementById("saveButton").style.display = "block"; // Exibe o botão de salvar
 }
+
+// Função para salvar os dados no localStorage e backend
+function saveData() {
+    const user = JSON.parse(localStorage.getItem("user")) || {};
+    user.name = document.getElementById("name").value;
+    user.email = document.getElementById("email").value;
+    user.password = document.getElementById("password").value;
+
+    // Atualiza os dados no localStorage
+    localStorage.setItem("user", JSON.stringify(user));
+
+    // Enviar dados ao backend
+    const data = {
+        id: user.id, // Supondo que o ID do usuário está armazenado
+        name: user.name,
+        email: user.email,
+        password: user.password
+    };
+
+    fetch('http://localhost:3004/api/atualizarPerfil', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao salvar os dados.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert('Dados salvos com sucesso!');
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Ocorreu um erro ao salvar os dados.');
+    });
+}
+
+// Adiciona os eventos de clique aos botões
+document.getElementById("editAllButton").addEventListener("click", function() {
+    enableEditAll();
+});
+
+document.getElementById("saveButton").addEventListener("click", function() {
+    saveData();
+});

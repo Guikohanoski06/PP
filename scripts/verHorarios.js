@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para buscar os atendimentos da API
     const fetchAtendimentos = async () => {
         try {
-            const response = await fetch('http://localhost:3004/api/atendimentos'); // Ajuste a URL conforme necessário
+            const response = await fetch('http://localhost:3004/api/atendimentos'); 
             if (!response.ok) {
                 throw new Error('Erro ao buscar os atendimentos');
             }
@@ -19,14 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${atendimento.contato}</td>
                     <td>${atendimento.status}</td>
                     <td>
-                        <button class="delete-button" data-id="${atendimento.id}">Delete</button> <!-- Botão de delete -->
+                        <button class="delete" data-id="${atendimento.id}">Delete</button> <!-- Botão de delete -->
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
 
             // Adiciona evento de click para os botões de delete
-            const deleteButtons = document.querySelectorAll('.delete-button');
+            const deleteButtons = document.querySelectorAll('.delete');
             deleteButtons.forEach(button => {
                 button.addEventListener('click', deleteAtendimento);
             });

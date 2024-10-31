@@ -33,18 +33,21 @@ label {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+textarea {
     width: 100%;
-    padding: 10px;
+    padding: 10px; /* Mantenha o mesmo padding dos inputs */
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Adiciona transição */
 }
 
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+textarea:focus {
     border-color: #066db1;
     outline: none;
     box-shadow: 0 0 8px rgba(6, 109, 177, 0.2);
@@ -82,4 +85,10 @@ button[type="submit"]:hover {
 
 .account-button:hover {
     color: #055a90;
+}
+
+textarea {
+    resize: none; /* Impede o redimensionamento */
+    height: 20px; /* Define uma altura padrão para o textarea */
+    border: 1px solid #ccc; /* Adiciona uma borda igual aos inputs */
 }

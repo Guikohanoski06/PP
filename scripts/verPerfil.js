@@ -1,61 +1,46 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Recupera os dados do usuário armazenados no localStorage
     const user = JSON.parse(localStorage.getItem("user"));
-
+    console.log(user);
+    
     if (user) {
-        // Preenche os campos com os dados do usuário
         document.getElementById("name").value = user.name || "";
         document.getElementById("email").value = user.email || "";
         document.getElementById("password").value = user.password || "";
     } else {
-        // Caso não haja dados no localStorage, redireciona para a página de login
         alert("Nenhum dado de usuário encontrado.");
         window.location.href = "login.html";
     }
 });
 
-// Função para habilitar a edição de todos os campos
 function enableEditAll() {
     const inputs = document.querySelectorAll(".profile-info input");
-    inputs.forEach(input => {
-        input.disabled = false; // Habilita todos os campos
-        input.focus(); // Foca no primeiro campo editável
-    });
-
-    document.getElementById("saveButton").style.display = "block"; // Exibe o botão de salvar
+    inputs.forEach(input => input.disabled = false);
+    document.getElementById("saveButton").style.display = "block";
+    document.getElementById("editAllButton").style.display = "none";
 }
 
-// Função para salvar os dados no localStorage e backend
 function saveData() {
     const user = JSON.parse(localStorage.getItem("user")) || {};
     user.name = document.getElementById("name").value;
     user.email = document.getElementById("email").value;
     user.password = document.getElementById("password").value;
 
-    // Atualiza os dados no localStorage
-    localStorage.setItem("user", JSON.stringify(user));
-
-    // Enviar dados ao backend
-    const data = {
-        id: user.id, // Supondo que o ID do usuário está armazenado
+    // Enviar o ID do usuário também
+    const updatedData = {
+        id: user.id, // Adicione o ID do usuário
         name: user.name,
         email: user.email,
         password: user.password
     };
 
+    localStorage.setItem("user", JSON.stringify(updatedData));
+
     fetch('http://localhost:3004/api/atualizarPerfil', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedData) // Envia os dados atualizados
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro ao salvar os dados.');
-        }
-        return response.json();
-    })
+    .then(response => response.ok ? response.json() : Promise.reject())
     .then(data => {
         alert('Dados salvos com sucesso!');
     })
@@ -65,11 +50,6 @@ function saveData() {
     });
 }
 
-// Adiciona os eventos de clique aos botões
-document.getElementById("editAllButton").addEventListener("click", function() {
-    enableEditAll();
-});
-
-document.getElementById("saveButton").addEventListener("click", function() {
-    saveData();
-});
+// Adicione os listeners para os botões
+document.getElementById("editAllButton").addEventListener("click", enableEditAll);
+document.getElementById("saveButton").addEventListener("click", saveData);

@@ -6,7 +6,7 @@ button.onclick = async function (event) {
     let name = document.getElementById("username").value;  
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
-    let cpf = document.getElementById("cpf").value;
+    let cpf = document.getElementById("cpf").value; // Adicionando o campo CPF
 
     let data = { name, email, password, cpf };  
     console.log("Dados do formulário:", data);
@@ -22,7 +22,7 @@ button.onclick = async function (event) {
         console.log("Resposta do servidor:", content);
         if (content.success) {
             alert("Sucesso");
-            window.location.href = "loginPsi.html";
+            window.location.href = "loginPsi.html"; // Redireciona para a página de login
         } else {
             alert("Erro ao enviar os dados: " + content.message);
         }

@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     let button = document.getElementById("handleSubmit");
-    let errorMessage = document.getElementById("error-message"); // Referência à mensagem de erro
 
     button.addEventListener("click", async function () {
         let name = document.getElementById("username").value;

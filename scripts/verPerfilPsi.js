@@ -1,63 +1,62 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const psicologo = JSON.parse(localStorage.getItem("psicologo"));
+    console.log(psicologo)
 
-    if (user) {
-        document.getElementById("name").value = user.name || "";
-        document.getElementById("email").value = user.email || "";
-        document.getElementById("password").value = user.password || "";
+
+    if (psicologo) {
+        document.getElementById("name").value = psicologo.name || "";
+        document.getElementById("email").value = psicologo.email || "";
+        document.getElementById("password").value = psicologo.password || "";
     } else {
         alert("Nenhum dado de usuário encontrado.");
-        window.location.href = "login.html";
+        window.location.href = "loginPsi.html";
     }
 });
 
-function toggleEdit(field) {
-    const inputField = document.getElementById(field);
-    const button = document.getElementById(`edit-${field}-button`);
-
-    if (button.innerText === "Editar") {
-        inputField.disabled = false;
-        inputField.focus();
-        button.innerText = "Salvar";
-    } else {
-        const user = JSON.parse(localStorage.getItem("user")) || {};
-        user[field] = inputField.value;
-        localStorage.setItem("user", JSON.stringify(user));
-
-        saveData(user);
-
-        inputField.disabled = true;
-        button.innerText = "Editar";
-    }
+function enableEditAll() {
+    const inputs = document.querySelectorAll(".profile-info input");
+    inputs.forEach(input => {
+        if (input.id !== "name") { // Não habilitar o campo de nome
+            input.disabled = false;
+        }
+    });
+    document.getElementById("saveButton").style.display = "block";
+    document.getElementById("editAllButton").style.display = "none";
 }
 
-function saveData(user) {
-    const data = {
-        id: user.id,          
-        name: user.name,
-        email: user.email,
-        password: user.password
-    };
+function saveData() {
+    const psicologo = localStorage.getItem("psicologo") || {};
+    console.log(psicologo);
+    psicologo.email = document.getElementById("email").value;
+    psicologo.password = document.getElementById("password").value;
 
-    fetch('http://localhost:3004/api/atualizarPerfil', { // fazer um post para cada input
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+    const updatedData = {
+        id: psicologo.id,           
+        name: psicologo.name,
+        email: psicologo.email,
+        password: psicologo.password
+    };
+    console.log(updatedData);
+
+    localStorage.setItem("psicologo", JSON.stringify(updatedData));
+
+    fetch('http://localhost:3004/api/atualizarPerfilPsicologo', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedData)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro ao salvar os dados.');
-        }
-        return response.json();
-    })
+    .then(response => response.ok ? response.json() : Promise.reject())
     .then(data => {
-        console.log('Dados atualizados com sucesso:', data);
-        alert('Dados atualizados com sucesso!');
+        console.log(data);
+        alert('Dados salvos com sucesso!');
+        location.reload(); // Opcional: Recarregar a página para refletir as mudanças
     })
     .catch(error => {
         console.error('Erro:', error);
         alert('Ocorreu um erro ao salvar os dados.');
     });
 }
+
+// Eventos
+document.getElementById("editAllButton").addEventListener("click", enableEditAll);
+document.getElementById("saveButton").addEventListener("click", saveData);

@@ -11,9 +11,9 @@ const loginRouter = require('./routes/loginRouter');
 const userRouterPsi = require('./routes/userRouterPsi');
 const loginRouterPsi = require('./routes/loginRouterPsi');
 const homeRouter = require('./routes/homeRouter');
-const postarHorario = require('./routes/postarHorarioRouter')
-const verHorario = require('./routes/verHorarioRouter')
-const atualizarPerfil = require('./routes/atualizarPerfilRouter')
+const postarHorario = require('./routes/postarHorarioRouter');
+const verHorario = require('./routes/verHorarioRouter');
+const atualizarPerfil = require('./routes/atualizarPerfilRouter');
 
 const app = express();
 
@@ -35,11 +35,11 @@ app.use('/api', loginRouterPsi);
 // Rota para buscar psicólogos
 app.use('/api', homeRouter);
 
-// rota para postar atendimentos
-app.use('/api', postarHorario)
-app.use('/api', verHorario)
+// Rota para postar e ver horários
+app.use('/api', postarHorario);
+app.use('/api', verHorario);
 
-// atualizar perfil
-app.use('/api', atualizarPerfil)
+// Rota para atualizar perfil
+app.use('/api', atualizarPerfil);
 
 module.exports = app;

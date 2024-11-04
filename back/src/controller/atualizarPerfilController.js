@@ -32,6 +32,7 @@ async function atualizarPerfil(req, res) {
         }
     });
 }
+
 async function atualizarPerfilPsicologo(req, res) {
     const { name, email, password } = req.body; // Remova 'id' daqui
     const query = 'UPDATE psicologos SET email = ?, password = ?, updated_at = NOW() WHERE name = ?'; // Atualiza pela coluna 'name'

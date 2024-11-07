@@ -40,7 +40,7 @@ async function fetchPsicologos() {
             <div class="text">
               <h2 class="psychologist-name">${psicologo.name}</h2>
               <p class="psychologist-info">${psicologo.email}</p>
-              <button class="view-schedule-button" onclick="window.location.href='/front/verHorario.html'">Ver Horários Marcados</button>
+              <button class="view-schedule-button" onclick="window.location.href='/front/verHorario.html?psicologo_id=${psicologo.id}'">Ver Horários Marcados</button>
             </div>
           </div>
         `;

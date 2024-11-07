@@ -5,15 +5,15 @@ const cors = require('cors');
 // Carregar variáveis de ambiente
 dotenv.config();
 
-// Importação de todos os routers
+// Importação das rotas
 const userRouter = require('./routes/userRouter');
 const loginRouter = require('./routes/loginRouter');
 const userRouterPsi = require('./routes/userRouterPsi');
 const loginRouterPsi = require('./routes/loginRouterPsi');
 const homeRouter = require('./routes/homeRouter');
 const postarHorario = require('./routes/postarHorarioRouter');
-const verHorario = require('./routes/verHorarioRouter');
 const atualizarPerfil = require('./routes/atualizarPerfilRouter');
+const verHorario = require('./routes/verHorarioRouter');
 
 const app = express();
 
@@ -24,22 +24,14 @@ app.set('port', process.env.PORT || 3005);
 app.use(cors());
 app.use(express.json());
 
-// Rotas para usuários comuns e login
+// Rotas
 app.use('/api', userRouter);
 app.use('/api', loginRouter);
-
-// Rotas específicas para psicólogos e login
 app.use('/api', userRouterPsi);
 app.use('/api', loginRouterPsi);
-
-// Rota para buscar psicólogos
 app.use('/api', homeRouter);
-
-// Rota para postar e ver horários
 app.use('/api', postarHorario);
-app.use('/api', verHorario);
-
-// Rota para atualizar perfil
+app.use('/api', verHorario);  // Verifique se está com o /api correto
 app.use('/api', atualizarPerfil);
 
 module.exports = app;

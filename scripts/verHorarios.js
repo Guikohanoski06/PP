@@ -1,19 +1,13 @@
-// verHorarios.js
-document.addEventListener('DOMContentLoaded', () => {
-    const tbody = document.getElementById('atendimentos-table-body');
+async function fetchAtendimentos(psicologoId) {
+    try {
+        const response = await fetch(`http://localhost:3004/api/atendimentos?psicologo_id=${psicologoId}`);
+        const data = await response.json();
 
-    // Substitua por uma forma real de obter o ID do psicólogo logado
-    const psicologoId = 1; // Exemplo, altere conforme necessário
+        const tbody = document.getElementById('atendimentos-table-body');
+        tbody.innerHTML = '';
 
-    const fetchAtendimentos = async () => {
-        try {
-            const response = await fetch(`http://localhost:3004/api/atendimentos?psicologo_id=${psicologoId}`);
-            if (!response.ok) {
-                throw new Error('Erro ao buscar os atendimentos');
-            }
-            const atendimentos = await response.json();
-
-            atendimentos.forEach(atendimento => {
+        if (data.length > 0) {
+            data.forEach(atendimento => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${atendimento.local}</td>
@@ -21,41 +15,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${atendimento.horario.slice(0, 5)}</td>
                     <td>${atendimento.contato}</td>
                     <td>${atendimento.status}</td>
-                    <td>
-                        <button class="delete" data-id="${atendimento.id}">Delete</button>
-                    </td>
                 `;
                 tbody.appendChild(tr);
             });
-
-            // Evento de click para o botão de delete
-            const deleteButtons = document.querySelectorAll('.delete');
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', deleteAtendimento);
-            });
-        } catch (error) {
-            console.error('Erro:', error);
+        } else {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td colspan="6">Erro ao carregar atendimentos.</td>`;
+            tr.innerHTML = `<td colspan="5">Nenhum atendimento encontrado.</td>`;
             tbody.appendChild(tr);
         }
-    };
+    } catch (error) {
+        console.error('Erro ao carregar os atendimentos:', error);
+    }
+}
 
-    const deleteAtendimento = async (event) => {
-        const id = event.target.getAttribute('data-id');
-        try {
-            const response = await fetch(`http://localhost:3004/api/atendimentos/${id}`, {
-                method: 'DELETE'
-            });
-            if (!response.ok) {
-                throw new Error('Erro ao deletar o atendimento');
-            }
-            event.target.closest('tr').remove();
-        } catch (error) {
-            console.error('Erro:', error);
-            alert('Erro ao deletar o atendimento.');
-        }
-    };
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const psicologoId = urlParams.get('psicologo_id');
+    console.log(psicologoId);
 
-    fetchAtendimentos();
+    if (psicologoId) {
+        fetchAtendimentos(psicologoId);
+    } else {
+        console.error('Parâmetro psicologo_id não encontrado na URL.');
+    }
 });

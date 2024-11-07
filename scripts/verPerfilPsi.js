@@ -12,33 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if (passwordField) passwordField.value = psicologo.password || "";
 
         // Chamar a função para carregar consultas
-        carregarConsultasDoPsicologo(psicologo.id);
     } else {
         alert("Nenhum dado de usuário encontrado.");
         window.location.href = "loginPsi.html";
     }
 });
-
-// Função para carregar as consultas do psicólogo logado
-function carregarConsultasDoPsicologo(id) {
-    fetch(`http://localhost:3004/consultas/psicologo/${id}`)
-        .then(response => response.json())
-        .then(consultas => {
-            const listaConsultas = document.getElementById("lista-consultas");
-            listaConsultas.innerHTML = ""; // Limpa a lista antes de preencher
-
-            consultas.forEach(consulta => {
-                const item = document.createElement("li");
-                item.textContent = `Data: ${consulta.dia} | Hora: ${consulta.hora} | Status: ${consulta.status}`;
-                listaConsultas.appendChild(item);
-            });
-        })
-        .catch(error => {
-            console.error("Erro ao carregar consultas do psicólogo:", error);
-            alert("Erro ao carregar as consultas. Tente novamente mais tarde.");
-        });
-}
-
 function enableEditAll() {
     const inputs = document.querySelectorAll(".profile-info input");
     inputs.forEach(input => {

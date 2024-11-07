@@ -1,3 +1,5 @@
+const psiData = JSON.parse(localStorage.getItem("psicologo"))
+console.log(psiData);
 document.getElementById("handleSubmit").onclick = async function (event) {
     event.preventDefault(); 
 
@@ -6,9 +8,10 @@ document.getElementById("handleSubmit").onclick = async function (event) {
     const data = document.getElementById("data").value;
     const horario = document.getElementById("horario").value;
     const contato = document.getElementById("contato").value;
+    const idPsi = psiData.id
 
     // Cria o objeto com os dados a serem enviados
-    const consultaData = { local, data, horario, contato };
+    const consultaData = { local, data, horario, contato, idPsi };
     console.log("Dados do formulário:", consultaData);
 
     try {

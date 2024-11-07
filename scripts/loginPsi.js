@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let data = { name, email, password };
         console.log("Dados do formulário:", data);
-        localStorage.setItem("psicologo", JSON.stringify(data));
         try {
             const response = await fetch('http://localhost:3004/api/loginPsi', {
                 method: "POST",
@@ -24,7 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: JSON.stringify(data)
             });
             const content = await response.json();
-            console.log(content);
+            localStorage.setItem("psicologo", JSON.stringify(content.data[0]));
+            console.log(content.data[0]);
 
             if (content.success) {
                 console.log("Login realizado com sucesso!");

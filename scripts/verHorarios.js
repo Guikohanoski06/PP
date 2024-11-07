@@ -1,31 +1,34 @@
+// verHorarios.js
 document.addEventListener('DOMContentLoaded', () => {
     const tbody = document.getElementById('atendimentos-table-body');
 
-    // Função para buscar os atendimentos da API
+    // Substitua por uma forma real de obter o ID do psicólogo logado
+    const psicologoId = 1; // Exemplo, altere conforme necessário
+
     const fetchAtendimentos = async () => {
         try {
-            const response = await fetch('http://localhost:3004/api/atendimentos'); 
+            const response = await fetch(`http://localhost:3004/api/atendimentos?psicologo_id=${psicologoId}`);
             if (!response.ok) {
                 throw new Error('Erro ao buscar os atendimentos');
             }
             const atendimentos = await response.json();
 
-            // Adiciona cada atendimento à tabela
             atendimentos.forEach(atendimento => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${atendimento.local}</td>
-                    <td>${atendimento.horario}</td>
+                    <td>${new Date(atendimento.data).toLocaleDateString()}</td>
+                    <td>${atendimento.horario.slice(0, 5)}</td>
                     <td>${atendimento.contato}</td>
                     <td>${atendimento.status}</td>
                     <td>
-                        <button class="delete" data-id="${atendimento.id}">Delete</button> <!-- Botão de delete -->
+                        <button class="delete" data-id="${atendimento.id}">Delete</button>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
 
-            // Adiciona evento de click para os botões de delete
+            // Evento de click para o botão de delete
             const deleteButtons = document.querySelectorAll('.delete');
             deleteButtons.forEach(button => {
                 button.addEventListener('click', deleteAtendimento);
@@ -33,14 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Erro:', error);
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td colspan="5">Erro ao carregar atendimentos.</td>`;
+            tr.innerHTML = `<td colspan="6">Erro ao carregar atendimentos.</td>`;
             tbody.appendChild(tr);
         }
     };
 
-    // Função para deletar um atendimento
     const deleteAtendimento = async (event) => {
-        const id = event.target.getAttribute('data-id'); // Obtém o ID do atendimento a ser deletado
+        const id = event.target.getAttribute('data-id');
         try {
             const response = await fetch(`http://localhost:3004/api/atendimentos/${id}`, {
                 method: 'DELETE'
@@ -48,14 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 throw new Error('Erro ao deletar o atendimento');
             }
-
-            // Remove a linha da tabela
             event.target.closest('tr').remove();
         } catch (error) {
             console.error('Erro:', error);
-            alert('Erro ao deletar o atendimento.'); // Mensagem para o usuário
+            alert('Erro ao deletar o atendimento.');
         }
     };
 
-    fetchAtendimentos(); // Chama a função para buscar atendimentos
+    fetchAtendimentos();
 });

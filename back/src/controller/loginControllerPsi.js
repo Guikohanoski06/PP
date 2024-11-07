@@ -5,7 +5,7 @@ async function loginPsi(request, response) {
         request.body.email, request.body.password
     );
 
-    const query = "SELECT name, password, email, id, created_at FROM psicologos WHERE email = ? and password = ?";
+    const query = "SELECT * FROM psicologos WHERE email = ? and password = ?";
 
     connection.query(query, params, (err, results) => {
         if (results.length > 0 && results) {

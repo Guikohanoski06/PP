@@ -1,7 +1,7 @@
 const connection = require('../config/db').promise();
 
 async function storeConsulta(req, res) {
-    const { local, horario, data, contato } = req.body;
+    const { local, horario, data, contato, idPsi } = req.body;
 
     if (!local || !horario || !data || !contato) {
         return res.status(400).json({
@@ -10,8 +10,8 @@ async function storeConsulta(req, res) {
         });
     }
 
-    const query = "INSERT INTO consultas (local, horario, data, contato) VALUES (?, ?, ?, ?)";
-    const params = [local, horario, data, contato];
+    const query = "INSERT INTO consultas (local, horario, data, contato, psicologo_id) VALUES (?, ?, ?, ?, ?)";
+    const params = [local, horario, data, contato, idPsi];
 
     try {
         const [results] = await connection.query(query, params);

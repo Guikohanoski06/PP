@@ -1,7 +1,16 @@
 async function fetchAtendimentos(psicologoId) {
     try {
         const response = await fetch(`http://localhost:3004/api/atendimentos?psicologo_id=${psicologoId}`);
+        
+        // Verifique se a resposta da API é válida
+        if (!response.ok) {
+            throw new Error('Falha ao buscar os atendimentos.');
+        }
+
         const data = await response.json();
+        
+        // Verifique o que está vindo da API
+        console.log(data);  // Adicione esta linha para depuração
 
         const tbody = document.getElementById('atendimentos-table-body');
         tbody.innerHTML = '';
@@ -36,31 +45,3 @@ async function fetchAtendimentos(psicologoId) {
         console.error('Erro ao carregar os atendimentos:', error);
     }
 }
-
-async function agendarAtendimento(atendimentoId) {
-    try {
-        const response = await fetch(`http://localhost:3004/api/atendimentos/${atendimentoId}/agendar`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: 'confirmado' })
-        });
-
-        if (!response.ok) {
-            throw new Error('Erro ao agendar o atendimento');
-        }
-        console.log(`Atendimento ${atendimentoId} agendado com sucesso.`);
-    } catch (error) {
-        console.error('Erro ao agendar atendimento:', error);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search); 
-    const psicologoId = urlParams.get('psicologo_id');
-
-    if (psicologoId) {
-        fetchAtendimentos(psicologoId);
-    } else {
-        console.error('Parâmetro psicologo_id não encontrado na URL.');
-    }
-});

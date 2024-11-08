@@ -15,7 +15,7 @@ async function fetchAtendimentos(psicologoId) {
                     <td>${atendimento.horario.slice(0, 5)}</td>
                     <td>${atendimento.contato}</td>
                     <td>${atendimento.status}</td>
-                    <td><button class="agendar-btn" data-id="${atendimento.id}">Agendar</button></td>
+                    <td><button class="agendar-btn" data-id="${atendimento.id}" ${atendimento.status === "Confirmado" ? 'disabled' : ''}>Agendar</button></td>
                 `;
                 tbody.appendChild(tr);
             });

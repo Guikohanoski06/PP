@@ -2,10 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-// Carregar variáveis de ambiente
 dotenv.config();
 
-// Importação das rotas
 const userRouter = require('./routes/userRouter');
 const loginRouter = require('./routes/loginRouter');
 const userRouterPsi = require('./routes/userRouterPsi');
@@ -17,12 +15,10 @@ const verHorario = require('./routes/verHorarioRouter');
 
 const app = express();
 
-// Configurar a porta do servidor
-app.set('port', process.env.PORT || 3005);
+app.set('port', process.env.PORT || 3005); 
 
-// Middlewares
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // Habilita o CORS para permitir requisições de diferentes origens
+app.use(express.json()); // Middleware para processar requisições com JSON no body
 
 // Rotas
 app.use('/api', userRouter);
@@ -31,7 +27,7 @@ app.use('/api', userRouterPsi);
 app.use('/api', loginRouterPsi);
 app.use('/api', homeRouter);
 app.use('/api', postarHorario);
-app.use('/api', verHorario);  // Verifique se está com o /api correto
+app.use('/api', verHorario);
 app.use('/api', atualizarPerfil);
 
 module.exports = app;

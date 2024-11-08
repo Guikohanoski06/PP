@@ -76,3 +76,12 @@ button.edit:hover {
 button.delete:hover {
     background-color: #d32f2f;
 }
+
+button.agendar-btn {
+    background-color: #066db1;
+}
+
+button.agendar-btn:hover {
+    background-color: #066db1d5;
+    transition: .4s all;
+}

@@ -6,10 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
 
-        // Validação básica
         if (!name || !email || !password) {
             errorMessage.textContent = "Por favor, preencha todos os campos.";
-            errorMessage.style.display = "block"; // Exibe a mensagem de erro
+            errorMessage.style.display = "block";
             return;
         }
 
@@ -28,20 +27,20 @@ document.addEventListener("DOMContentLoaded", function () {
             if (content.success) {
                 console.log("Login realizado com sucesso!");
 
-                // Salva os dados do usuário no localStorage
+                // Salva o ID e outros dados do usuário no localStorage
                 localStorage.setItem("user", JSON.stringify(content.data));
 
                 // Redireciona para a página de perfil
                 window.location.href = "../front/homePage.html";
             } else {
                 console.log("Erro ao realizar login!");
-                errorMessage.textContent = "Usuário ou senha inválidos."; // Mensagem de erro
-                errorMessage.style.display = "block"; // Exibe a mensagem de erro
+                errorMessage.textContent = "Usuário ou senha inválidos.";
+                errorMessage.style.display = "block";
             }
         } catch (error) {
             console.error("Erro na requisição:", error);
-            errorMessage.textContent = "Erro ao conectar ao servidor."; // Mensagem de erro
-            errorMessage.style.display = "block"; // Exibe a mensagem de erro
+            errorMessage.textContent = "Erro ao conectar ao servidor.";
+            errorMessage.style.display = "block";
         }
     });
 });

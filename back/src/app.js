@@ -29,7 +29,7 @@ app.use('/api', loginRouterPsi);
 app.use('/api', homeRouter);
 app.use('/api', postarHorario);
 app.use('/api', verHorario);
-app.use('/api', verAtendimento);
 app.use('/api', atualizarPerfil);
+app.use('/api', verAtendimento);
 
 module.exports = app;

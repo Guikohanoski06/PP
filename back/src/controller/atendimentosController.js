@@ -1,28 +1,56 @@
-// controllers/consultaController.js
 const db = require('../config/db');
 
-// Função para pegar as consultas agendadas de um usuário
-const verConsultas = (req, res) => {
-  const { user_id } = req.params; // O user_id será passado via parâmetros da URL
+const agendarConsulta = async (req, res) => {
+  const { local, horario, data, contato, psicologo_id, user_id } = req.body;
 
-  const query = `
-    SELECT c.id, c.local, c.horario, c.data, c.contato, c.status, p.name AS psicologo_name
-    FROM consultas c
-    JOIN psicologos p ON c.psicologo_id = p.id
-    WHERE c.status = 'Confirmado' AND c.user_id = ?
-  `;
+  try {
+    const [result] = await db.query(
+      'INSERT INTO consultas (local, horario, data, contato, psicologo_id, user_id) VALUES (?, ?, ?, ?, ?, ?)',
+      [local, horario, data, contato, psicologo_id, user_id]
+    );
 
-  db.query(query, [user_id], (err, results) => {
-    if (err) {
-      return res.status(500).json({ message: 'Erro ao recuperar as consultas' });
-    }
-
-    if (results.length > 0) {
-      res.json({ consultas: results });
-    } else {
-      res.status(404).json({ message: 'Nenhuma consulta encontrada' });
-    }
-  });
+    res.status(201).json({ message: 'Consulta agendada com sucesso!', consultaId: result.insertId });
+  } catch (error) {
+    console.error("Erro ao agendar consulta:", error);
+    res.status(500).json({ message: 'Erro ao agendar consulta', error });
+  }
 };
 
-module.exports = { verConsultas };
+const atualizarStatus = async (req, res) => {
+  const atendimentoId = req.params.id;
+  const { status } = req.body;
+
+  try {
+    const [result] = await db.query(
+      'UPDATE consultas SET status = ? WHERE id = ?',
+      [status, atendimentoId]
+    );
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: 'Consulta não encontrada.' });
+    }
+
+    res.status(200).json({ message: 'Status da consulta atualizado com sucesso.' });
+  } catch (error) {
+    console.error("Erro ao atualizar status da consulta:", error);
+    res.status(500).json({ message: 'Erro ao atualizar status da consulta', error });
+  }
+};
+
+const buscarConsultasConfirmadas = async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const [rows] = await db.query(
+      'SELECT * FROM consultas WHERE user_id = ? AND status IN ("Confirmado", "Pendente")',
+      [userId]
+    );
+
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error("Erro ao buscar consultas confirmadas:", error);
+    res.status(500).json({ message: 'Erro ao buscar consultas confirmadas', error });
+  }
+};
+
+module.exports = { agendarConsulta, atualizarStatus, buscarConsultasConfirmadas };

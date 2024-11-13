@@ -1,99 +1,23 @@
-// routes/atendimentos.js
 const express = require('express');
 const router = express.Router();
-const { getHorarios, deleteHorario, atualizarStatus } = require('../controller/verHorarioController');
+const { agendarAtendimento, getHorarios, deleteHorario, atualizarStatus, verAtendimentos, confirmarAtendimento } = require('../controller/verHorarioController');
 
-/**
- * @swagger
- * tags:
- *   name: Atendimentos
- *   description: API para gerenciamento de atendimentos
- */
+// Rota para buscar os atendimentos de um psicólogo
+router.get('/api/atendimentos', getHorarios);
 
-/**
- * @swagger
- * /atendimentos:
- *   get:
- *     summary: Obtém a lista de atendimentos
- *     tags: [Atendimentos]
- *     responses:
- *       200:
- *         description: Lista de atendimentos obtida com sucesso
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   id:
- *                     type: integer
- *                   local:
- *                     type: string
- *                   data:
- *                     type: string
- *                     format: date
- *                   horario:
- *                     type: string
- *                     format: time
- *                   contato:
- *                     type: string
- *                   status:
- *                     type: string
- *                     enum: [Pendente, Confirmado, Disponível, Indisponível]
- */
-router.get('/atendimentos', getHorarios);
+// Rota para deletar um atendimento
+router.delete('/api/atendimentos/:id', deleteHorario);
 
-/**
- * @swagger
- * /atendimentos/{id}:
- *   delete:
- *     summary: Deleta um atendimento pelo ID
- *     tags: [Atendimentos]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *         description: ID do atendimento a ser deletado
- *     responses:
- *       200:
- *         description: Atendimento deletado com sucesso
- *       404:
- *         description: Atendimento não encontrado
- */
-router.delete('/atendimentos/:id', deleteHorario);
+// Rota para atualizar o status do atendimento
+router.patch('/api/atendimentos/:id', atualizarStatus);
 
-/**
- * @swagger
- * /atendimentos/{id}/agendar:
- *   patch:
- *     summary: Atualiza o status de um atendimento para "agendado"
- *     tags: [Atendimentos]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *         description: ID do atendimento a ser atualizado
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               status:
- *                 type: string
- *                 enum: [Confirmado, Indisponível]
- *     responses:
- *       200:
- *         description: Status atualizado com sucesso
- *       404:
- *         description: Atendimento não encontrado
- */
-router.patch('/atendimentos/:id/agendar', atualizarStatus);
+// Rota para visualizar os atendimentos de um usuário
+router.get('/api/atendimentos/:userId', verAtendimentos);
+
+// Rota para confirmar o atendimento
+router.patch('/api/atendimentos/:consultaId/confirmar', confirmarAtendimento);
+
+// Rota para agendar o atendimento
+router.patch('/api/atendimentos/:id/agendar', agendarAtendimento);
 
 module.exports = router;

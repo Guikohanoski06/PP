@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        
         let data = { name, email, password };
         console.log("Dados do formulário:", data);
 
@@ -23,12 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             const content = await response.json();
             console.log(content);
-
+         
             if (content.success) {
                 console.log("Login realizado com sucesso!");
 
-                // Salva o ID e outros dados do usuário no localStorage
-                localStorage.setItem("user", JSON.stringify(content.data));
+                // Salva apenas o user_id no localStorage
+                localStorage.setItem("user_id", content.data.id);
 
                 // Redireciona para a página de perfil
                 window.location.href = "../front/homePage.html";

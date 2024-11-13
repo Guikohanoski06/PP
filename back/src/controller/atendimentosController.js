@@ -1,56 +1,62 @@
-const db = require('../config/db');
+const db = require('../config/db').promise();
 
-const agendarConsulta = async (req, res) => {
-  const { local, horario, data, contato, psicologo_id, user_id } = req.body;
+// Obter horários de atendimentos para um psicólogo específico
+const getHorarios = async (req, res) => {
+    const psicologoId = req.query.psicologo_id;
 
-  try {
-    const [result] = await db.query(
-      'INSERT INTO consultas (local, horario, data, contato, psicologo_id, user_id) VALUES (?, ?, ?, ?, ?, ?)',
-      [local, horario, data, contato, psicologo_id, user_id]
-    );
-
-    res.status(201).json({ message: 'Consulta agendada com sucesso!', consultaId: result.insertId });
-  } catch (error) {
-    console.error("Erro ao agendar consulta:", error);
-    res.status(500).json({ message: 'Erro ao agendar consulta', error });
-  }
-};
-
-const atualizarStatus = async (req, res) => {
-  const atendimentoId = req.params.id;
-  const { status } = req.body;
-
-  try {
-    const [result] = await db.query(
-      'UPDATE consultas SET status = ? WHERE id = ?',
-      [status, atendimentoId]
-    );
-
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ message: 'Consulta não encontrada.' });
+    try {
+        const [results] = await db.query(
+            'SELECT * FROM consultas WHERE psicologo_id = ?',
+            [psicologoId]
+        );
+        res.json(results);
+    } catch (error) {
+        console.error("Erro ao buscar atendimentos:", error);
+        res.status(500).json({ message: 'Erro ao buscar atendimentos', error });
     }
-
-    res.status(200).json({ message: 'Status da consulta atualizado com sucesso.' });
-  } catch (error) {
-    console.error("Erro ao atualizar status da consulta:", error);
-    res.status(500).json({ message: 'Erro ao atualizar status da consulta', error });
-  }
 };
 
-const buscarConsultasConfirmadas = async (req, res) => {
-  const userId = req.params.userId;
+// Deletar um horário de atendimento pelo ID
+const deleteHorario = async (req, res) => {
+    const id = req.params.id;
 
-  try {
-    const [rows] = await db.query(
-      'SELECT * FROM consultas WHERE user_id = ? AND status IN ("Confirmado", "Pendente")',
-      [userId]
-    );
-
-    res.status(200).json(rows);
-  } catch (error) {
-    console.error("Erro ao buscar consultas confirmadas:", error);
-    res.status(500).json({ message: 'Erro ao buscar consultas confirmadas', error });
-  }
+    try {
+        const [result] = await db.query('DELETE FROM consultas WHERE id = ?', [id]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Atendimento não encontrado.' });
+        }
+        res.status(200).json({ message: 'Atendimento deletado com sucesso' });
+    } catch (error) {
+        console.error("Erro ao deletar atendimento:", error);
+        res.status(500).json({ message: 'Erro ao deletar atendimento', error });
+    }
 };
 
-module.exports = { agendarConsulta, atualizarStatus, buscarConsultasConfirmadas };
+// Atualizar o status de um atendimento e associar com user_id
+const atualizarStatus = async (req, res) => {
+    const atendimentoId = req.params.id;
+    const { status, user_id } = req.body;  // Receber o status e user_id
+
+    try {
+        const [result] = await db.query(
+            'UPDATE consultas SET status = ?, user_id = ? WHERE id = ?',
+            [status, user_id, atendimentoId]
+        );
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Atendimento não encontrado.' });
+        }
+
+        res.status(200).json({ message: 'Status do atendimento atualizado com sucesso.' });
+    } catch (error) {
+        console.error("Erro ao atualizar status do atendimento:", error);
+        res.status(500).json({ message: 'Erro ao atualizar status do atendimento', error });
+    }
+};
+
+// Exportar os controladores
+module.exports = {
+    getHorarios,
+    deleteHorario,
+    atualizarStatus,
+};

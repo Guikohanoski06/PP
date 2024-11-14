@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Login realizado com sucesso!");
 
                 // Salva apenas o user_id no localStorage
-                localStorage.setItem("user_id", content.data.id);
+                localStorage.setItem("user", JSON.stringify(content.data));
 
                 // Redireciona para a página de perfil
                 window.location.href = "../front/homePage.html";

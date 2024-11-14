@@ -13,6 +13,8 @@ const postarHorario = require('./routes/postarHorarioRouter');
 const atualizarPerfil = require('./routes/atualizarPerfilRouter');
 const verHorario = require('./routes/verHorarioRouter');
 const verAtendimento = require('./routes/atendimentosRouter');
+const dataMarcada = require('./routes/dataMarcadaRouter');
+
 
 const app = express();
 
@@ -31,5 +33,6 @@ app.use('/api', postarHorario);
 app.use('/api', verHorario);
 app.use('/api', atualizarPerfil);
 app.use('/api', verAtendimento);
+app.use('/api', dataMarcada);
 
 module.exports = app;

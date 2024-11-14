@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const user = JSON.parse(localStorage.getItem("user"));
+    console.log(user)
     
     if (user) {
         document.getElementById("name").value = user.name || "";
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function enableEditAll() {
     const inputs = document.querySelectorAll(".profile-info input");
     inputs.forEach(input => {
-        if (input.id !== "name") { // Não habilitar o campo de nome
+        if (input.id !== "name") {
             input.disabled = false;
         }
     });
@@ -32,6 +33,7 @@ function saveData() {
         email: user.email,
         password: user.password
     };
+
     console.log(updatedData)
 
     localStorage.setItem("user", JSON.stringify(updatedData));
@@ -41,9 +43,12 @@ function saveData() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedData)
     })
-    .then(response => response.ok ? response.json() : Promise.reject())
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao salvar os dados no servidor');
+        return response.json();
+    })
     .then(data => {
-        console.log(data)
+        console.log('Resposta do servidor:', data);
         alert('Dados salvos com sucesso!');
     })
     .catch(error => {

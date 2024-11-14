@@ -1,4 +1,3 @@
-// Função para carregar os atendimentos do psicólogo
 async function fetchAtendimentos(psicologoId) {
     try {
         const response = await fetch(`http://localhost:3004/api/atendimentos?psicologo_id=${psicologoId}`);
@@ -6,8 +5,7 @@ async function fetchAtendimentos(psicologoId) {
             throw new Error("Erro ao buscar atendimentos");
         }
         const data = await response.json();
-
-        // Atualiza a tabela com os dados dos atendimentos
+        console.log(data);
         const tbody = document.getElementById('atendimentos-table-body');
         tbody.innerHTML = '';
 
@@ -29,7 +27,7 @@ async function fetchAtendimentos(psicologoId) {
             document.querySelectorAll('.agendar-btn').forEach(button => {
                 button.addEventListener('click', async (event) => {
                     const atendimentoId = event.target.getAttribute('data-id');
-                    await agendarAtendimento(atendimentoId); // Chama a função para agendar
+                    await agendarAtendimento(atendimentoId, psicologoId); // Passa o psicologoId para a função
                     await fetchAtendimentos(psicologoId); // Atualiza a lista após o agendamento
                 });
             });
@@ -43,10 +41,11 @@ async function fetchAtendimentos(psicologoId) {
     }
 }
 
-// Função para marcar um atendimento como agendado
-async function agendarAtendimento(atendimentoId) {
-    const userId = localStorage.getItem('user_id'); // Recupera o user_id do localStorage
-    const psicologoId = new URLSearchParams(window.location.search).get('psicologo_id'); // Recupera o psicologo_id da URL
+async function agendarAtendimento(atendimentoId, psicologoId) {
+    const user = JSON.parse(localStorage.getItem('user')); // Recupera o objeto user do localStorage
+    const userId = user ? user.id : null; // Pega o id do usuário a partir do objeto user
+
+    console.log('User:', user);  // Verifique o conteúdo de user aqui
 
     if (!userId || !psicologoId) {
         console.error('IDs ausentes: user_id ou psicologo_id não encontrados');
@@ -69,7 +68,6 @@ async function agendarAtendimento(atendimentoId) {
     }
 }
 
-// Carrega a lista de atendimentos ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const psicologoId = urlParams.get('psicologo_id');

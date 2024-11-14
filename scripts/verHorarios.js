@@ -45,8 +45,7 @@ async function agendarAtendimento(atendimentoId, psicologoId) {
     const user = JSON.parse(localStorage.getItem('user')); // Recupera o objeto user do localStorage
     const userId = user ? user.id : null; // Pega o id do usuário a partir do objeto user
 
-    console.log('User:', user);  // Verifique o conteúdo de user aqui
-
+    console.log('User:', user); 
     if (!userId || !psicologoId) {
         console.error('IDs ausentes: user_id ou psicologo_id não encontrados');
         return;

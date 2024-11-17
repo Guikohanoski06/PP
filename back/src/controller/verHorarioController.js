@@ -97,10 +97,9 @@ const confirmarAtendimento = async (req, res) => {
 // Função para agendar o atendimento
 const agendarAtendimento = async (req, res) => {
     const atendimentoId = req.params.id;
-    const { status, user_id, psicologo_id } = req.body; // Recebe o status, user_id e psicologo_id do corpo da requisição
+    const { status, user_id, psicologo_id } = req.body;
 
     try {
-        // Atualiza o atendimento com o novo status, user_id e psicologo_id
         const [result] = await db.query(
             'UPDATE consultas SET status = ?, user_id = ?, psicologo_id = ? WHERE id = ?',
             [status, user_id, psicologo_id, atendimentoId]
@@ -117,11 +116,38 @@ const agendarAtendimento = async (req, res) => {
     }
 };
 
+// Função para buscar os horários confirmados do psicólogo logado
+const getHorariosAgendados = async (req, res) => {
+    const { psicologo_id } = req.query;
+
+    if (!psicologo_id) {
+        return res.status(400).json({ success: false, message: "ID do psicólogo não fornecido." });
+    }
+
+    try {
+        const [result] = await db.query(
+            'SELECT * FROM consultas WHERE psicologo_id = ? AND status = "Confirmado"',
+            [psicologo_id]
+        );
+
+        if (result.length === 0) {
+            return res.status(200).json({ success: true, message: "Nenhuma consulta encontrada.", data: [] });
+        }
+
+        res.status(200).json({ success: true, message: "Consultas encontradas.", data: result });
+    } catch (error) {
+        console.error('Erro ao buscar consultas:', error);
+        res.status(500).json({ success: false, message: "Erro ao buscar consultas." });
+    }
+};
+
+
 module.exports = {
     getHorarios,
     deleteHorario,
     atualizarStatus,
     verAtendimentos,
     confirmarAtendimento,
-    agendarAtendimento
+    agendarAtendimento,
+    getHorariosAgendados
 };

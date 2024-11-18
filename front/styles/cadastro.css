@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f3f4f6;
-    margin: 0;
+    font-family: "Montserrat", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #066db1, #55a8e7);
+    color: #fff;
 }
 
 .container {
@@ -36,7 +38,7 @@ input[type="email"],
 input[type="password"],
 textarea {
     width: 100%;
-    padding: 10px; /* Mantenha o mesmo padding dos inputs */
+    padding: 10px 0; 
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;

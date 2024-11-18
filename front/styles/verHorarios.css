@@ -1,87 +1,128 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background: linear-gradient(135deg, #066db1, #55a8e7);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
 .container {
-    max-width: 800px;
-    margin: auto;
     background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
 }
 
 h1 {
-    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
     color: #066db1;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #fff;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
 }
 
-th, td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    color: #555;
-}
-
-th {
+thead tr {
     background-color: #066db1;
-    color: white;
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-td:last-child {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
     color: #fff;
-    font-size: 0.9em;
+    text-align: left;
+}
+
+thead th {
+    padding: 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody td {
+    padding: 1rem;
+    font-size: 1rem;
+    color: #333;
+    text-align: left;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
     cursor: pointer;
 }
 
-button.edit {
-    background-color: #4caf50;
+tbody td a {
+    color: #066db1;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
-button.delete {
-    background-color: #f44336;
+tbody td a:hover {
+    color: #044a70;
 }
 
-button.edit:hover {
-    background-color: #388e3c;
+.status {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: capitalize;
 }
 
-button.delete:hover {
-    background-color: #d32f2f;
+.status.confirmed {
+    background-color: #28a745;
+    color: #fff;
 }
 
-button.agendar-btn {
-    background-color: #066db1;
+.status.pending {
+    background-color: #ffc107;
+    color: #fff;
 }
 
-button.agendar-btn:hover {
-    background-color: #066db1d5;
-    transition: .4s all;
+.status.canceled {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    thead th, tbody td {
+        padding: 0.8rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
 }

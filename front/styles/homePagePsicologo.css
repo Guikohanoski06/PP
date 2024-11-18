@@ -1,76 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    background-color: #efefef;
-    font-family: sans-serif;
+    font-family: "Montserrat", sans-serif;
+    background: linear-gradient(135deg, #066db1, #55a8e7);
+    color: #333;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    overflow-x: hidden;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    max-width: 800px;
+    width: 100%;
 }
 
 header {
-    margin-top: 1rem;
     display: flex;
-    justify-content: space-around;
-    min-width: 100vw;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
-/* Configuração específica para o limite de 4 colunas */
-@media (min-width: 600px) {
-    .main-content {
-        grid-template-columns: repeat(4, 1fr);
+header img {
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+header img:hover {
+    transform: scale(1.1);
+}
+
+header .profile h1 {
+    font-size: 1.8rem;
+    color: #066db1;
+}
+
+.div-btns {
+    display: flex;
+    align-items: center;
+}
+
+.div-btns a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #066db1;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.div-btns a:hover {
+    background-color: #055a92;
+    transform: scale(1.05);
+}
+
+.div-btns a:active {
+    transform: scale(0.95);
+}
+
+.main-content section {
+    margin-bottom: 2rem;
+}
+
+.mental-health-intro h2,
+.tips-section h2,
+.resources h2 {
+    font-size: 1.6rem;
+    color: #066db1;
+    margin-bottom: 1rem;
+}
+
+.mental-health-intro p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+.tips-section ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1rem;
+}
+
+.tips-section li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: #333;
+}
+
+.tips-section li strong {
+    color: #066db1;
+}
+
+.resources p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.resources ul {
+    list-style: none;
+    padding: 0;
+}
+
+.resources li {
+    margin-bottom: 1rem;
+}
+
+.resources li a {
+    text-decoration: none;
+    color: #066db1;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.resources li a:hover {
+    color: #055a92;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    header .profile h1 {
+        font-size: 1.5rem;
+    }
+
+    .div-btns a {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+
+    .mental-health-intro h2,
+    .tips-section h2,
+    .resources h2 {
+        font-size: 1.4rem;
+    }
+
+    .mental-health-intro p,
+    .tips-section ul,
+    .resources p {
+        font-size: 0.9rem;
     }
 }
-.div-btns {
-    margin-right: 20px;
-    margin-top: 15px;
-}
-
-.div-btns .btn-diferent_content {
-    padding: 10px 20px;
-    background-color: #fff;
-    color: #066db1;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-    margin-top: 20px;
-}
-
-.div-btns .btn-diferent_content:hover {
-    background-color: #e0e0e0;
-}
-
-
-.main-content {
-    margin-top: 20px;
-    flex-grow: 1;
-}
-
-/* Botão flutuante para a página de horários */
-.floating-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #066db1;
-    color: #fff;
-    padding: 15px 20px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-size: 16px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-.floating-btn:hover {
-    background-color: #054a7f;
-}
-

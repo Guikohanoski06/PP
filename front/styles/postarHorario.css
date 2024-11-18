@@ -1,64 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    background-color: #f4f7fb;
+    font-family: "Montserrat", sans-serif;
+    background: linear-gradient(135deg, #066db1, #55a8e7);
     color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 .container {
-    background-color: #fff;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    max-width: 500px;
     width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 h2 {
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    color: #066db1;
     text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #066db1;
 }
 
 label {
+    font-size: 1rem;
     font-weight: bold;
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+    color: #333;
 }
 
-input, select {
+input {
     width: 100%;
     padding: 0.8rem;
-    margin-bottom: 1.2rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    border-color: #066db1;
+    box-shadow: 0 0 5px rgba(6, 109, 177, 0.5);
+    outline: none;
 }
 
 button {
-    width: 100%;
-    padding: 0.8rem;
-    background-color: #066db1;
-    color: #fff;
+    padding: 0.8rem 1.2rem;
     font-size: 1rem;
-    font-weight: bold;
+    color: #fff;
+    background-color: #066db1;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
-    background-color: #05508d;
+    background-color: #055a92;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
+
+    input {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
 }

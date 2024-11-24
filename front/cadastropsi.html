@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro Profissional</title>
-    <link rel="stylesheet" href="./styles/cadastro.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./styles/cadastro.css" />
+  </head>
+  <body>
     <div class="container">
-        <form method="post">
-            <h2>Cadastro Profissional</h2>
-            <label for="username">Usuário:</label>
-            <textarea resize="none" id="username" name="username" required></textarea>
-            <label for="email">Email:</label>
-            <textarea resize="none" id="email" name="email" required></textarea>
-            <label for="password">Senha:</label>
-            <textarea resize="none" id="password" name="password" required></textarea>
-            <label for="cpf">CPF:</label>
-            <textarea resize="none" id="cpf" name="cpf" required></textarea>
-            <button type="submit" id="handleSubmit">Cadastrar</button>
-        </form>
-        <a class="account-button" href='loginpsi.html'>Já tenho conta</a>
+      <form method="post" id="cadastroForm">
+        <h2>Cadastro Profissional</h2>
+        
+        <label for="username">Usuário:</label>
+        <textarea id="username" name="username" required></textarea>
+        
+        <label for="email">Email:</label>
+        <textarea id="email" name="email" required></textarea>
+        
+        <label for="password">Senha:</label>
+        <textarea id="password" name="password" required></textarea>
+        
+        <label for="cpf">CPF:</label>
+        <textarea id="cpf" name="cpf" required></textarea>
+        
+        <label for="crm">CRM:</label>
+        <textarea id="crm" name="crm" required></textarea>
+
+        <button type="submit" id="handleSubmit">Cadastrar</button>
+      </form>
+      <a class="account-button" href="loginpsi.html">Já tenho conta</a>
     </div>
     <script src="../scripts/cadastroPsi.js"></script>
-</body>
+  </body>
 </html>
